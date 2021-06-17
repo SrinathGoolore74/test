@@ -1,6 +1,6 @@
 
 echo Diff between prev commmit
-git show
+git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }}
 
 #echo test, and deploy your project.
 
