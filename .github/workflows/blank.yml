@@ -44,39 +44,28 @@ jobs:
         run: |
           echo ${{ steps.getfile.outputs.files }}
           
-      # Checkout the source code
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: Generate git diff since last push
+        run: |
+          # write raw git diff in file
+          git diff ${{ github.event.before }} ${{ github.sha }} > git.diff
+          # convert raw git diff to html
+          git diff ${{ github.event.before }} ${{ github.sha }} | bash ./.github/diff2html.sh > email-body.html
+          zip -r diff.zip git.diff email-body.html
+      - name: Send git diff mail
+        uses: dawidd6/action-send-mail@v2
         with:
-          fetch-depth: 0
-
-      # Check for changes
-      - name: Check for changes
-        id: checkForChanges
-        run: |
-          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c '^proxy' )"
-    
-      - name: echo output1
-        run: |
-          echo ${{ steps.checkForChanges.outputs.grepValue }}
+          server_address: email-smtp.us-east-1.amazonaws.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Github Actions job result
+          # Read file contents as body:
+          body: file://email-body.html
+          to: srinath.goolore74@gmail.com
+          from: srinath <srinath.goolore74@gmail.com>
+          # Optional content type (defaults to text/plain):
+          content_type: text/html
+          attachments: diff.zip
           
-      - uses: actions/checkout@v2
-      - name: Check for changes
-        id: diff
-        run: |
-          if [ $GITHUB_BASE_REF ]; then
-            # Pull Request
-            git fetch origin $GITHUB_BASE_REF --depth=1
-            export DIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
-            echo "Diff between origin/$GITHUB_BASE_REF and $GITHUB_SHA"
-          else
-            # Push
-            git fetch origin ${{ github.event.before }} --depth=1
-            export DIFF=$( git diff --name-only ${{ github.event.before }} $GITHUB_SHA )
-            echo "Diff between ${{ github.event.before }} and $GITHUB_SHA"
-          fi
-          echo "$DIFF"
-          # Escape newlines (replace \n with %0A)
-          echo "::set-output name=diff::$( echo "$DIFF" | sed ':a;N;$!ba;s/\n/%0A/g' )"
-      - run: echo "${{ steps.diff.outputs.diff }}"
+      
      
