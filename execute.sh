@@ -4,7 +4,7 @@ git diff --name-only --diff-filter=AM -- ${{ github.event.before }} -- ${{ githu
 
 #echo test, and deploy your project.
 
-echo srinath
+echo srinath  goolore
 
 #git checkout -b test 
 #git push origin test
