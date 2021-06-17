@@ -38,7 +38,7 @@ jobs:
       - name: get changed files
         id: getfile
         run: |
-          echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+          echo "::set-output name=files::$(git diff --color ${{ github.event.before }} ${{ github.sha }})"
 
       - name: echo output
         run: |
