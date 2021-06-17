@@ -55,3 +55,8 @@ jobs:
         id: checkForChanges
         run: |
           echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c '^proxy' )"
+    
+      - name: echo output1
+        run: |
+          echo ${{ steps.checkForChanges.outputs.grepValue }}
+     
