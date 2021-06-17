@@ -51,10 +51,6 @@ jobs:
           server_address: smtp.gmail.com
           # Required mail server port:
           server_port: 587
-          # Optional (recommended): mail server username:
-          username: srinath.goolore74@gmail.com
-          # Optional (recommended) mail server password:
-          password: Letmein@1974
           # Required mail subject:
           subject: Github Actions job result
           # Required recipients' addresses:
