@@ -44,28 +44,40 @@ jobs:
         run: |
           echo ${{ steps.getfile.outputs.files }}
           
-      - name: Generate git diff since last push
-        run: |
-          # write raw git diff in file
-          git diff ${{ github.event.before }} ${{ github.sha }} > git.diff
-          # convert raw git diff to html
-          git diff ${{ github.event.before }} ${{ github.sha }} | bash ./.github/diff2html.sh > email-body.html
-          zip -r diff.zip git.diff email-body.html
-      - name: Send git diff mail
-        uses: dawidd6/action-send-mail@v2
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
-          server_address: email-smtp.us-east-1.amazonaws.com
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
           server_port: 465
+          # Optional (recommended): mail server username:
           username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
+          # Required mail subject:
           subject: Github Actions job result
-          # Read file contents as body:
-          body: file://email-body.html
+          # Required recipients' addresses:
           to: srinath.goolore74@gmail.com
-          from: srinath <srinath.goolore74@gmail.com>
-          # Optional content type (defaults to text/plain):
-          content_type: text/html
-          attachments: diff.zip
+          # Required sender full name (address can be skipped):
+          from: Srinath Goolore # <srinath.goolore74@gmail.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          body: Build job of ${{github.repository}} completed successfully!
+          # Optional HTML body read from file:
+          html_body: file://README.html
+          # Optional carbon copy recipients:
+          cc: srinath.goolore74@gmail.com
+          # Optional blind carbon copy recipients:
+          bcc: srinath.goolore74@gmail.com
+          # Optional recipient of the email response:
+          reply_to: srinath.goolore74@gmail.com
+          # Optional unsigned/invalid certificates allowance:
+          ignore_cert: true
+          # Optional converting Markdown to HTML (set content_type to text/html too):
+          convert_markdown: true
+        
           
       
      
