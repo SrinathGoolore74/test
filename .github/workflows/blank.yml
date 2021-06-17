@@ -61,22 +61,8 @@ jobs:
           to: srinath.goolore74@gmail.com
           # Required sender full name (address can be skipped):
           from: Srinath Goolore # <srinath.goolore74@gmail.com>
-          # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully!
-          # Optional HTML body read from file:
-          html_body: test
-          # Optional carbon copy recipients:
-          cc: srinath.goolore74@gmail.com
-          # Optional blind carbon copy recipients:
-          bcc: srinath.goolore74@gmail.com
-          # Optional recipient of the email response:
-          reply_to: srinath.goolore74@gmail.com
-          # Optional unsigned/invalid certificates allowance:
-          ignore_cert: true
-          # Optional converting Markdown to HTML (set content_type to text/html too):
-          convert_markdown: true
         
           
       
