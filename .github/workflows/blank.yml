@@ -43,3 +43,20 @@ jobs:
       - name: echo output
         run: |
           echo ${{ steps.getfile.outputs.files }}
+          
+      # Checkout the source code
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Check for changes
+      - name: Check for changes
+        id: checkForChanges
+        run: |
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c '^proxy' )"
+    
+      - name: echo output1
+        run: |
+          echo ${{ steps.checkForChanges.outputs.grepValue }}
+     
