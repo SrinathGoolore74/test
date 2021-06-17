@@ -60,7 +60,7 @@ jobs:
           # Required sender full name (address can be skipped):
           from: Srinath Goolore # <srinath.goolore74@gmail.com>
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully!
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.getfile.outputs.files }}
         
           
       
