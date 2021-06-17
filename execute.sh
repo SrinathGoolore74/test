@@ -4,7 +4,7 @@ echo Diff between prev commmit
 
 #echo test, and deploy your project.
 
-echo srinath  test1 changes 
+echo srinath  test1 changes  sdsdsdsd
 
 #git checkout -b test 
 #git push origin test
