@@ -52,7 +52,7 @@ jobs:
           # Required mail server port:
           server_port: 25
           username: srinath.goolore74@gmail.com
-          password: Letmein@1974
+          password: hrqsxcqflfbamuko
           # Required mail subject:
           subject: Github Actions job result
           # Required recipients' addresses:
