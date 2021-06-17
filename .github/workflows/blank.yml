@@ -45,13 +45,13 @@ jobs:
           echo ${{ steps.getfile.outputs.files }}
           
       # Checkout the source code
-      - name: 'Checkout source code'
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    # Check for changes
-    - name: Check for changes
-    id: checkForChanges
-    run: |
-      echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c '^proxy' )"
+      # Check for changes
+      - name: Check for changes
+        id: checkForChanges
+        run: |
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c '^proxy' )"
