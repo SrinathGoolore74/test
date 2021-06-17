@@ -1,6 +1,6 @@
 
 echo Diff between prev commmit
-echo git diff HEAD^
+git diff HEAD^
 
 #echo test, and deploy your project.
 
