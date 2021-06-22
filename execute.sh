@@ -1,6 +1,6 @@
 
-echo "install aws-cli"
-brew install aws-cli
+echo "install awscli"
+brew install awscli
 
 tar_file_name = "config-repo"
 
