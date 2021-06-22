@@ -13,7 +13,6 @@ echo repo list
 configs=( "kube-example" )
 #configs=("environmentconfiguration" "addressformatconfiguration" "analyticsconfiguration" "bootstrap" "cartconfiguration" "chatconfiguration" "checkoutconfiguration" "commonconfiguration" "communityconfiguration" "contentconfiguration" "customercommsconfiguration" "digitalassetconfiguration" "experiencemanagerconfiguration" "feedappconfiguration" "FrontendCoversConfiguration" "infrastructureconfiguration" "ireserveconfiguration" "marketingconfiguration" "mobileconfiguration" "monitoringconfiguration" "offerconfiguration" "omnitureconfiguration" "orderingconfiguration" "orderprocessorconfiguration" "orderstatusconfiguration" "paymentconfiguration" "Forkplatformconfiguration" "productcentralconfiguration" "sapshippingconfiguration" "secretconfiguration" "shippingconfiguration" "tradeupconfiguration" "uberconfiguration")
 
-cd configs
 echo checkout git repos
 for config in "${configs[@]}"
 do
@@ -31,7 +30,7 @@ done
 
 # echo put tar file to s3 bucket
 tar czvf ../config-repo.tar.gz ./
-cd ..
-aws s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
+
+#aws s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
 
 
