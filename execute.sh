@@ -1,6 +1,6 @@
 
-echo "install awscli"
-brew install --build-from-source awscli
+#echo "install awscli"
+#brew install --build-from-source awscli
 
 echo "set env variables"
 export AWS_ACCESS_KEY_ID=AKIAXPLVCKTL5SUXPK7M; 
@@ -33,4 +33,5 @@ done
 tar czvf ../config-repo.tar.gz ./
 cd ..
 aws s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
+
 
