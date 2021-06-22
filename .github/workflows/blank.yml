@@ -33,6 +33,14 @@ jobs:
       - name: Run a multi-line script
         run: |
           sh execute.sh
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIAXPLVCKTL5SUXPK7M
+          aws-secret-access-key: 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
+          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # if you have/need it
+          aws-region: us-east-1
 
       - name: Upload to S3
         run: |
