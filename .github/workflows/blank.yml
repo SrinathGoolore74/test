@@ -44,7 +44,7 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws s3 cp kube-example  s3://mysriaosbucket/kube-example --recursive
+          aws s3 cp kube-example  s3://namespace3/kube-example --recursive
           #args: s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
     
 
