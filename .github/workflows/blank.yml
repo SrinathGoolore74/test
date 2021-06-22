@@ -43,15 +43,14 @@ jobs:
           aws-region: us-east-1
           S3_BUCKET: namespace3
 
-      - name: Upload to S3
-        run: |
-          echo "bucket name : " $S3_BUCKET
-          aws s3 cp kube-example  s3://namespace3/kube-example --recursive
-          #args: s3 cp config-repo.tar.gz  s3://$S3_BUCKET/config-repo.tar.gz 
+#       - name: Upload to S3
+#         run: |
+#           aws s3 cp kube-example  s3://namespace3/kube-example --recursive
+#           #args: s3 cp config-repo.tar.gz  s3://$S3_BUCKET/config-repo.tar.gz 
     
-      - name: should it be skipped?
+      - name: Check and Upload to S3
         env:
-          COMMIT_FILTER: "skip-ci"
+          COMMIT_FILTER: "namespace3"
         run: | 
           # Get last commit message
           readonly local last_commit_log=$(git log -1 --pretty=format:"%s")
@@ -62,9 +61,10 @@ jobs:
 
           if [[ "$filter_count" -eq 0 ]]; then
             echo "all good, continue"
+            aws s3 cp kube-example  s3://namespace3/kube-example --recursive
           else
-            echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", stopping"
-            exit 78
+            echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", stopping config push to s3"
+            #exit 78
           fi
 
 
