@@ -60,11 +60,12 @@ jobs:
           echo "number of occurence of '$COMMIT_FILTER' in '$last_commit_log': $filter_count"
 
           if [[ "$filter_count" -eq 0 ]]; then
-            echo "all good, continue"
-            aws s3 cp kube-example  s3://namespace3/kube-example --recursive
-          else
-            echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", stopping config push to s3"
+            echo "Commit messgae not having namespace. Stopping config push to s3 bucket"
             #exit 78
+          else
+            echo "all good, continue"
+            echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", push config to s3"
+            aws s3 cp kube-example  s3://namespace3/kube-example --recursive
           fi
 
 
