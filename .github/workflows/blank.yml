@@ -36,7 +36,8 @@ jobs:
 
       - name: Upload to S3
         run: |
-          args: s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
+          aws s3 cp kube-example  s3://mysriaosbucket/kube-example --recursive
+          #args: s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
     
 
 #       - name: get changed files
