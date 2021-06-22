@@ -29,7 +29,7 @@ git clone https://github.com/SrinathGoolore74/kube-example.git
 # done
 
 # echo put tar file to s3 bucket
-#tar czvf ./config-repo.tar.gz ./
+tar czvf ./config-repo.tar.gz ./
 
 #aws s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
 
