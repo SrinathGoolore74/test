@@ -35,32 +35,32 @@ jobs:
           sh execute.sh
 
 
-      - name: get changed files
-        id: getfile
-        run: |
-          echo "::set-output name=files::$(git diff --color ${{ github.event.before }} ${{ github.sha }})"
+#       - name: get changed files
+#         id: getfile
+#         run: |
+#           echo "::set-output name=files::$(git diff --color ${{ github.event.before }} ${{ github.sha }})"
 
-      - name: echo output
-        run: |
-          echo ${{ steps.getfile.outputs.files }}
+#       - name: echo output
+#         run: |
+#           echo ${{ steps.getfile.outputs.files }}
           
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          # Required mail server address:
-          server_address: smtp.gmail.com
-          # Required mail server port:
-          server_port: 25
-          username: srinath.goolore74@gmail.com
-          password: hrqsxcqflfbamuko
-          # Required mail subject:
-          subject: Github Actions job result
-          # Required recipients' addresses:
-          to: srinath.goolore74@gmail.com
-          # Required sender full name (address can be skipped):
-          from: Srinath Goolore # <srinath.goolore74@gmail.com>
-          # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.getfile.outputs.files }}
+#       - name: Send mail
+#         uses: dawidd6/action-send-mail@v3
+#         with:
+#           # Required mail server address:
+#           server_address: smtp.gmail.com
+#           # Required mail server port:
+#           server_port: 25
+#           username: srinath.goolore74@gmail.com
+#           password: hrqsxcqflfbamuko
+#           # Required mail subject:
+#           subject: Github Actions job result
+#           # Required recipients' addresses:
+#           to: srinath.goolore74@gmail.com
+#           # Required sender full name (address can be skipped):
+#           from: Srinath Goolore # <srinath.goolore74@gmail.com>
+#           # Optional plain body:
+#           body: Build job of ${{github.repository}} completed successfully! ${{ steps.getfile.outputs.files }}
         
           
       
