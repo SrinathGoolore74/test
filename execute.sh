@@ -1,8 +1,6 @@
 
 echo "install awscli"
-brew install awscli
-
-tar_file_name = "config-repo"
+brew install --build-from-source awscli
 
 echo "set env variables"
 export AWS_ACCESS_KEY_ID=AKIAXPLVCKTL5SUXPK7M; 
