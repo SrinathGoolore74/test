@@ -7,7 +7,7 @@ export AWS_ACCESS_KEY_ID=AKIAXPLVCKTL5SUXPK7M;
 export AWS_SECRET_ACCESS_KEY=Bfp2GRsoLoCgS+/xqqyrO1xpSjfS/QsThNk5eLZx;  
 
 echo list buckets
-aws s3 ls 
+#aws s3 ls 
 
 echo repo list
 configs=( "kube-example" )
