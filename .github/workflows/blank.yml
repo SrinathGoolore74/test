@@ -46,7 +46,7 @@ jobs:
         with:
           S3_BUCKET: namespace3
         run: |
-          aws s3 cp kube-example  s3://namespace3/kube-example --recursive
+          aws s3 cp kube-example  s3://$S3_BUCKET/kube-example --recursive
           #args: s3 cp config-repo.tar.gz  s3://$S3_BUCKET/config-repo.tar.gz 
     
 
