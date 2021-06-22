@@ -34,6 +34,11 @@ jobs:
         run: |
           sh execute.sh
 
+      - name: Upload to S3
+        uses: actions/aws/cli@master
+        with:
+          args: s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
+    
 
 #       - name: get changed files
 #         id: getfile
