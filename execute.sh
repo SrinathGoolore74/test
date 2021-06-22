@@ -1,12 +1,38 @@
 
-echo Diff between prev commmit
-#git diff --name-only --diff-filter=AM -- ${{ github.event.before }} -- ${{ github.sha }}
+echo "install aws-cli"
+brew install aws-cli
 
-#echo test, and deploy your project.
+tar_file_name = "config-repo"
 
-echo srinath  test1 changes  Changes did now after email 
+echo "set env variables"
+export AWS_ACCESS_KEY_ID=AKIAXPLVCKTL5SUXPK7M; 
+export AWS_SECRET_ACCESS_KEY=Bfp2GRsoLoCgS+/xqqyrO1xpSjfS/QsThNk5eLZx;  
 
-#git checkout -b test 
-#git push origin test
+echo list buckets
+aws s3 ls 
 
+echo repo list
+configs=( "kube-example" )
+#configs=("environmentconfiguration" "addressformatconfiguration" "analyticsconfiguration" "bootstrap" "cartconfiguration" "chatconfiguration" "checkoutconfiguration" "commonconfiguration" "communityconfiguration" "contentconfiguration" "customercommsconfiguration" "digitalassetconfiguration" "experiencemanagerconfiguration" "feedappconfiguration" "FrontendCoversConfiguration" "infrastructureconfiguration" "ireserveconfiguration" "marketingconfiguration" "mobileconfiguration" "monitoringconfiguration" "offerconfiguration" "omnitureconfiguration" "orderingconfiguration" "orderprocessorconfiguration" "orderstatusconfiguration" "paymentconfiguration" "Forkplatformconfiguration" "productcentralconfiguration" "sapshippingconfiguration" "secretconfiguration" "shippingconfiguration" "tradeupconfiguration" "uberconfiguration")
+
+cd configs
+echo checkout git repos
+for config in "${configs[@]}"
+do
+    echo "************ Checking out $config from $1 branch"
+    #lconfig=`echo "$config" | awk '{ print tolower($1) }'`
+    #git clone git@github.pie.apple.com:aos-config/$lconfig.git $config -b $1
+	git clone https://github.com/SrinathGoolore74/$config.git
+done
+
+# echo put config repo directories to s3 bucket
+# for config in "${configs[@]}"
+# do
+# 	aws s3 cp $config  s3://mysriaosbucket//$config --recursive
+# done
+
+# echo put tar file to s3 bucket
+tar czvf ../config-repo.tar.gz ./
+cd ..
+aws s3 cp config-repo.tar.gz  s3://mysriaosbucket/config-repo.tar.gz 
 
