@@ -10,17 +10,17 @@ echo list buckets
 #aws s3 ls 
 
 echo repo list
-configs=( "kube-example" )
+#configs=( "kube-example" )
 #configs=("environmentconfiguration" "addressformatconfiguration" "analyticsconfiguration" "bootstrap" "cartconfiguration" "chatconfiguration" "checkoutconfiguration" "commonconfiguration" "communityconfiguration" "contentconfiguration" "customercommsconfiguration" "digitalassetconfiguration" "experiencemanagerconfiguration" "feedappconfiguration" "FrontendCoversConfiguration" "infrastructureconfiguration" "ireserveconfiguration" "marketingconfiguration" "mobileconfiguration" "monitoringconfiguration" "offerconfiguration" "omnitureconfiguration" "orderingconfiguration" "orderprocessorconfiguration" "orderstatusconfiguration" "paymentconfiguration" "Forkplatformconfiguration" "productcentralconfiguration" "sapshippingconfiguration" "secretconfiguration" "shippingconfiguration" "tradeupconfiguration" "uberconfiguration")
 
 echo checkout git repos
-for config in "${configs[@]}"
-do
-    echo "************ Checking out $config from $1 branch"
-    #lconfig=`echo "$config" | awk '{ print tolower($1) }'`
-    #git clone git@github.pie.apple.com:aos-config/$lconfig.git $config -b $1
-	git clone https://github.com/SrinathGoolore74/$config.git
-done
+# for config in "${configs[@]}"
+# do
+#     echo "************ Checking out $config from $1 branch"
+#     #lconfig=`echo "$config" | awk '{ print tolower($1) }'`
+#     #git clone git@github.pie.apple.com:aos-config/$lconfig.git $config -b $1
+	git clone https://github.com/SrinathGoolore74/kube-example.git
+# done
 
 # echo put config repo directories to s3 bucket
 # for config in "${configs[@]}"
